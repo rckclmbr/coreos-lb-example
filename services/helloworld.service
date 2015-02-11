@@ -1,0 +1,18 @@
+[Unit]
+Description=HelloWorld Service
+After=docker.service
+Requires=docker.service
+
+[Service]
+EnvironmentFile=/etc/environment
+TimeoutStartSec=0
+ExecStartPre=/bin/sh -c "/usr/bin/docker pull rckclmbr/helloworld"
+ExecStart=/bin/sh -c "/usr/bin/docker run --rm \
+            -p 5000:5000 \
+            --name helloworld \
+            rckclmbr/helloworld"
+ExecStop=/usr/bin/docker stop helloworld
+User=core
+
+[Install]
+WantedBy=multi-user.target

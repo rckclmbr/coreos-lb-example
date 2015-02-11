@@ -1,0 +1,20 @@
+[Unit]
+Description=HelloWorld Distributed Service
+After=docker.service
+Requires=docker.service
+
+[Service]
+EnvironmentFile=/etc/environment
+TimeoutStartSec=0
+ExecStartPre=/bin/sh -c "/usr/bin/docker pull rckclmbr/helloworld"
+ExecStart=/bin/sh -c "/usr/bin/docker run --rm \
+            -p ${COREOS_PUBLIC_IPV4}::5000 \
+            --name helloworld-%i \
+            rckclmbr/helloworld"
+ExecStartPost=/bin/sh -c "sleep 1; /usr/bin/etcdctl set /app/helloworld/%i $(docker port helloworld-%i 5000)"
+ExecStop=/usr/bin/docker stop helloworld-%i
+ExecStopPost=/usr/bin/etcdctl rm /app/helloworld/%i
+User=core
+
+[Install]
+WantedBy=multi-user.target
