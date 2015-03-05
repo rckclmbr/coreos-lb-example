@@ -1,0 +1,7 @@
+FROM gliderlabs/alpine
+
+MAINTAINER Josh Braegger <rckclmbr@gmail.com>
+
+RUN apk-install go
+
+VOLUME /app

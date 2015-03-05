@@ -2,10 +2,8 @@ FROM gliderlabs/alpine
 
 MAINTAINER Josh Braegger <rckclmbr@gmail.com>
 
-RUN apk-install py-flask
-
-ADD app.py /app/app.py
+ADD app /app
 
 EXPOSE 5000
 
-CMD /usr/bin/env python /app/app.py
+CMD /app
