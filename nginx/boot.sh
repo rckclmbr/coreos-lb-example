@@ -21,7 +21,4 @@ echo "[nginx] confd is listening for changes on etcd..."
 
 # Start nginx
 echo "[nginx] starting nginx service..."
-service nginx start
-
-# Tail all nginx log files
-tail -f /var/log/nginx/*.log
+/usr/sbin/nginx
