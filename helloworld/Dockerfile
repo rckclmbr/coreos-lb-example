@@ -1,8 +1,8 @@
-FROM ubuntu:14.04
+FROM gliderlabs/alpine
 
 MAINTAINER Josh Braegger <rckclmbr@gmail.com>
 
-RUN apt-get install -y python-flask
+RUN apk-install py-flask
 
 ADD app.py /app/app.py
 

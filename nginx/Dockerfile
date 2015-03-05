@@ -1,11 +1,12 @@
-FROM ubuntu:14.04
+FROM gliderlabs/alpine
 MAINTAINER Josh Braegger <rckclmbr@gmail.com>
 
 # Install Nginx
-RUN echo "deb http://ppa.launchpad.net/nginx/development/ubuntu trusty main" > /etc/apt/sources.list.d/nginx.list; \
-    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys C300EE8C; \
-    apt-get update; \
-    apt-get install -y --force-yes nginx curl
+#RUN echo "deb http://ppa.launchpad.net/nginx/development/ubuntu trusty main" > /etc/apt/sources.list.d/nginx.list; \
+#    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys C300EE8C; \
+#    apt-get update; \
+#    apt-get install -y --force-yes nginx curl
+RUN apk-install nginx curl bash
 
 # Install confd
 RUN curl -sL https://github.com/kelseyhightower/confd/releases/download/v0.6.3/confd-0.6.3-linux-amd64 > /usr/local/bin/confd; \
