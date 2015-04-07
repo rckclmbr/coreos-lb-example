@@ -5,7 +5,7 @@ MAINTAINER Josh Braegger <rckclmbr@gmail.com>
 RUN apk-install nginx curl bash
 
 # Install confd
-RUN curl -sL https://github.com/kelseyhightower/confd/releases/download/v0.6.3/confd-0.6.3-linux-amd64 > /usr/local/bin/confd; \
+RUN curl -sL https://github.com/kelseyhightower/confd/releases/download/v0.8.0/confd-0.8.0-linux-amd64 > /usr/local/bin/confd; \
     chmod 755 /usr/local/bin/confd
 
 # Create directories
